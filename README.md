@@ -108,6 +108,10 @@ BenchmarkTools.Trial:
 Notice the slight increase in the memory consumption.  This is because
 `restack` re-creates the object in the stack.
 
+See more examples in
+[`benchmark/`](https://github.com/tkf/Restacker.jl/tree/master/benchmark)
+directory.
+
 ## How it works
 
 Consider an immutable type:
