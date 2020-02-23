@@ -12,9 +12,8 @@ using Restacker: restack
     end
 end
 
-@noinline function filter_map_restack!(ys0, xs0)
-    ys = restack(ys0)
-    xs = restack(xs0)
+@noinline function filter_map_restack!(ys, xs)
+    ys = restack(ys)
     @inbounds for i in eachindex(ys, xs)
         x = xs[i]
         if -0.5 < x < 0.5
