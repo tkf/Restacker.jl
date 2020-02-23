@@ -107,3 +107,55 @@ BenchmarkTools.Trial:
 
 Notice the slight increase in the memory consumption.  This is because
 `restack` re-creates the object in the stack.
+
+## How it works
+
+Consider an immutable type:
+
+```julia
+struct ABC{A,B,C}
+    a::A
+    b::B
+    c::C
+end
+```
+
+Then
+
+```julia
+abc = restack(abc)
+```
+
+is equivalent to
+
+```julia
+abc = ABC(
+    restack(abc.a),
+    restack(abc.b),
+    restack(abc.c),
+)
+```
+
+For mutable object like `x :: Array`, `restack` return the input as-is.
+
+In general, `restack` is an identity function such that
+
+```julia
+restack(x) === x
+```
+
+Notice the triple-equality `===`.  It means that `restack` does not
+change the behavior of the program while it may benefit run-time
+performance by sacrificing the memory consumption (slightly) and
+compile-time.
+
+(Side notes: There is an even more experimental function
+`Restacker.unsafe_restack` to re-construct `mutable struct` as well.
+This is unsafe because it breaks the identity (`===`) and breaks the
+assumption of the code relying on `finalize`.)
+
+Under the hood, `restack` on `struct` types work by directly invoking
+the
+[`new` expression](https://docs.julialang.org/en/latest/devdocs/ast/#Expr-types-1).
+This skips evaluating user-defined constructors and minimizes the
+run-time overhead.
