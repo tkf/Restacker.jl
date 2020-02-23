@@ -1,5 +1,7 @@
 # Restacker: put immutables back in the stack
 
+[![GitHub Actions](https://github.com/tkf/ThreadsX.jl/workflows/Run%20tests/badge.svg)](https://github.com/tkf/ThreadsX.jl/actions?query=workflow%3A%22Run+tests%22)
+
 In Julia (as of 1.4) immutable objects containing heap-allocated
 objects _may not_ be stack-allocated sometimes⁽¹⁾ and that's why using
 something like `view` can degrade performance substantially.
