@@ -1,7 +1,7 @@
 module TestCore
 
 using Test
-using Restacker: restack, hard_restack
+using Restacker: restack, unsafe_restack
 
 struct ABC{A,B,C}
     a::A
@@ -39,7 +39,7 @@ end
     ),
 ]
     @test restack(x) === x
-    @test hard_restack(x) === x
+    @test unsafe_restack(x) === x
 end
 
 @testset "$(testlabel(x))" for x in Any[
@@ -50,9 +50,9 @@ end
     (a = Dict(:a => 1, :b => 2), b = Set([1, 2]), c = ABC(1, 2, 3)),
 ]
     if (x == x) === true
-        @test hard_restack(x) == x
+        @test unsafe_restack(x) == x
     end
-    @test isequal(hard_restack(x), x)
+    @test isequal(unsafe_restack(x), x)
 end
 
 end  # module
