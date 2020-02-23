@@ -39,7 +39,7 @@ end
 
 suite = BenchmarkGroup()
 
-xs = rand(1:10, 1_000_000)
+xs = rand(1:10, 1_000)
 suite["norestack"] = @benchmarkable unique_norestack($xs)
 suite["restack"] = @benchmarkable unique_restack($xs)
 
