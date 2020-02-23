@@ -26,6 +26,13 @@ end
     1+2im,
     :symbol,
     "string",
+    Int,
+    Array,
+    Vector,
+    Vector{Int},
+    ABC,
+    ABC{Int},
+    ABC{Int,Int,Int},
     (nothing, missing, 1, 1.0, NaN, 1 + 2im, :symbol, "string"),
     (Val(1), Val(2), nothing, missing, undef),
     (
