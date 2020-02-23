@@ -14,7 +14,6 @@ nmatches(r, s) = count(_ -> true, eachmatch(r, s))
 
 @noinline function filter_map_restack!(ys, xs)
     ys = restack(ys)
-    xs = restack(xs)
     @inbounds for i in eachindex(ys, xs)
         x = xs[i]
         if -0.5 < x < 0.5
