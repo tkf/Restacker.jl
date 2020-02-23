@@ -1,6 +1,6 @@
 module Restacker
 
-export restack, hard_restack
+export restack
 
 """
     restack(x) -> x
@@ -13,13 +13,13 @@ restack
 restack(x) = _restack(x, Val(false))
 
 """
-    hard_restack(x) -> x
+    unsafe_restack(x) -> x
 
 Like `restack(x)` but works for mutable objects, too. Thus, this is
 the identity function only w.r.t (at most) `isequal`.
 """
-hard_restack
-hard_restack(x) = _restack(x, Val(true))
+unsafe_restack
+unsafe_restack(x) = _restack(x, Val(true))
 
 _getlength(::Type{<:NTuple{N,Any}}) where {N} = N
 _getnames(::Type{<:NamedTuple{names}}) where {names} = names
