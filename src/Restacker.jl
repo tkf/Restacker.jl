@@ -40,7 +40,14 @@ _getnames(::Type{<:NamedTuple{names}}) where {names} = names
         # https://github.com/JuliaLang/julia/issues/30210
         ex = :x
     elseif isstructtype(x)
-        new = Expr(:new, x, map(n -> :(_restack(x.$n, Val{$hard}())), fieldnames(x))...)
+        new = Expr(
+            :new,
+            x,
+            map(
+                n -> :(_restack(getfield(x, $(QuoteNode(n))), Val{$hard}())),
+                fieldnames(x),
+            )...,
+        )
         if hard === true
             ex = new
         else
