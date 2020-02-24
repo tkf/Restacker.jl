@@ -14,6 +14,7 @@ pitfall.
 
 ⁽¹⁾ It seems that this tends to happen when such an object crosses
 non-inlined function call boundaries. See also
+[this in-depth StackOverflow answer by Tim Holy](https://stackoverflow.com/a/47607539),
 [this](https://discourse.julialang.org/t/stack-allocation-for-structs-with-heap-references/2293)
 and
 [this](https://discourse.julialang.org/t/immutables-with-reference-fields-why-boxed/7706)
