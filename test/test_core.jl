@@ -11,7 +11,7 @@ end
 
 function testlabel(x)
     n = 50
-    s = string(x)
+    s = repr(x)
     length(s) < n && return s
     label = join(Iterators.take(s, n))
     return string(label, "…")
